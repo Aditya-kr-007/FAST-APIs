@@ -8,6 +8,11 @@ wheels/
 
 # Virtual environments
 .venv
+.venv.broken-*
+
+# Local server logs
+server.log
+server.err.log
 
 # OS metadata
 desktop.ini
