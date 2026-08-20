@@ -55,3 +55,11 @@ def create_todo(title: str, db: Session = Depends(get_db)):
             "completed": todo.completed
         }
     }
+
+@app.get("/todos")
+def get_todos(db:Session=Depends(get_db)):
+    todos = db.query(Todo).all()
+    return {
+        "total":len(todos),
+        "data":todos
+    }
