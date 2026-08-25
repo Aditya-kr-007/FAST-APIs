@@ -1,0 +1,89 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "FastAPI: main.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "main:app",
+        "--reload",
+        "--port",
+        "8000"
+      ],
+      "jinja": true,
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "FastAPI: sqlalchemyCRUD.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "sqlalchemyCRUD:app",
+        "--reload",
+        "--port",
+        "8001"
+      ],
+      "jinja": true,
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "FastAPI: sqlite_inFastAPI.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "sqlite_inFastAPI:app",
+        "--reload",
+        "--port",
+        "8002"
+      ],
+      "jinja": true,
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "FastAPI: middleware.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "middleware:app",
+        "--reload",
+        "--port",
+        "8003"
+      ],
+      "jinja": true,
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "FastAPI: token_auth.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "token_auth:app",
+        "--reload",
+        "--port",
+        "8004"
+      ],
+      "jinja": true,
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "FastAPI: asyncAPI.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "asyncAPI:app",
+        "--reload",
+        "--port",
+        "8005"
+      ],
+      "jinja": true,
+      "console": "integratedTerminal"
+    }
+  ]
+}

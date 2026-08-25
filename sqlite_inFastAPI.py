@@ -18,3 +18,9 @@ def home():
         "message":"SQLite connected successfully"
     }
 
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run("sqlite_inFastAPI:app", host="127.0.0.1", port=8002, reload=True)
+

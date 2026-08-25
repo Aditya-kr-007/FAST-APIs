@@ -63,7 +63,7 @@ def get_todos(db:Session=Depends(get_db)):
     }
 # READ THROUGH PATH
 @app.get("/todos/{todo_id}")
-def get_todo(todo_id= int, db: Session = Depends(get_db)):
+def get_todo(todo_id: int, db: Session = Depends(get_db)):
     todo = db.query(Todo).filter(Todo.id == todo_id).first()
     if not todo:
         raise HTTPException(
@@ -101,3 +101,9 @@ def delete_todo(todo_id:int, db: Session=Depends(get_db)):
     return {
         "message":"Todo Deleted"
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run("sqlalchemyCRUD:app", host="127.0.0.1", port=8001, reload=True)
