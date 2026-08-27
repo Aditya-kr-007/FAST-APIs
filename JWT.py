@@ -1,12 +1,14 @@
 from fastapi import FastAPI, Depends, HTTPException, Header
-from jose import jwt
+from jose import JWTError, jwt
 from datetime import datetime, timedelta, timezone
 
 app = FastAPI()
 
 #define the secret key and algorithm to use for encoding and decoding the JWT
+#JWT configuration
 SECRET_KEY ="mysecretkey"
 ALGORITHM = "HS256"
+
 def create_token(data: dict):
     #create a copy of the data to encode
     to_encode = data.copy()
@@ -24,9 +26,7 @@ def login(username: str, password: str):
     #check if the username and password are correct
     if username == "admin" and password == "1234":
         #create a token with the username as the subject
-        access_token = create_token(
-            {"sub": username}
-        )
+        access_token = create_token( {"sub": username} )
         return {
             "access_token": access_token
         }
@@ -41,7 +41,7 @@ def verify_token(token: str = Header(None)):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload
-    except:
+    except JWTError:
         raise HTTPException(
             status_code=401, 
             detail="Invalid token"
