@@ -3,8 +3,10 @@ from sqlalchemy.orm import sessionmaker, declarative_base, Session
 from fastapi import FastAPI, Depends, HTTPException
 
 app = FastAPI()
+
 # Define the database URL and create the SQLAlchemy engine
 DATABASE_URL = "sqlite:///./tests.db"
+
 # Create the SQLAlchemy engine and session
 engine = create_engine(
     DATABASE_URL,
