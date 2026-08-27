@@ -37,7 +37,7 @@ def get_db():
     finally:
         db.close()
 
-# CRUD Operations
+# DATABASE CONNECTION TEST
 @app.get("/")
 def home(db: Session = Depends(get_db)):
     return {
@@ -58,10 +58,10 @@ def create_todo(title: str, db: Session = Depends(get_db)):
 # READ
 @app.get("/todos")
 def get_todos(db:Session=Depends(get_db)):
-    todos = db.query(Todo).all()
+    all_todo = db.query(Todo).all()
     return {
-        "total":len(todos),
-        "data":todos
+        "total":len(all_todo),
+        "data":all_todo
     }
 # READ THROUGH PATH
 @app.get("/todos/{todo_id}")
@@ -76,7 +76,7 @@ def get_todo(todo_id: int, db: Session = Depends(get_db)):
 # UPDATE
 @app.put("/todos/{todo_id}")
 def update_todo(todo_id: int, title: str, db: Session= Depends(get_db)):
-    todo=db.query(Todo).filter(Todo.id==todo_id).first() 
+    todo = db.query(Todo).filter(Todo.id == todo_id).first() 
     if not todo:
         raise HTTPException(
             status_code=404,
