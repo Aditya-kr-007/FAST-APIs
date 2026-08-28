@@ -29,7 +29,7 @@ def verify_password(plain_password, hashed_password):
 fake_users_db = {
     "admin": {
         "username": "admin",
-        "hashed_password": hash_password("1234"),
+        "hashed_password": hash_password("1234")
     }
 }
 
@@ -67,13 +67,13 @@ def verify_token(token: str = Depends(oauth2_scheme)):
         if username is None:
             raise HTTPException(
                 status_code=401,
-                detail="Invalid token",
+                detail="Invalid token"
             )
         return username
     except JWTError:
         raise HTTPException(
             status_code=401,
-            detail="Invalid token",
+            detail="Invalid token"
         )
     
 @app.get("/protected")
@@ -83,8 +83,3 @@ def protected_route(username: str = Depends(verify_token)):
         "user": username
     }
 
-
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run("OAuth2:app", host="127.0.0.1", port=8005, reload=True)
