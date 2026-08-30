@@ -5,13 +5,14 @@ import shutil
 
 app = FastAPI()
 
+
 # Directory to store uploaded files
 UPLOAD_DIRECTORY = "uploads"
 if not os.path.exists(UPLOAD_DIRECTORY):
     os.makedirs(UPLOAD_DIRECTORY)
 
 # Mount the static files directory to serve uploaded files
-#URL: http://localhost:8000/files/<filename>
+#URL: http://127.0.0.1:8000/files/<filename>
 app.mount("/files", StaticFiles(directory=UPLOAD_DIRECTORY), name="uploads")
 
 # Upload file API endpoint

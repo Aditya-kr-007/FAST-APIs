@@ -83,4 +83,3 @@ def protected_route(username: str = Depends(verify_token)):
         "message": "You have access to this protected route.",
         "user": username
     }
-
