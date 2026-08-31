@@ -19,9 +19,9 @@ app.mount("/files", StaticFiles(directory=UPLOAD_DIRECTORY), name="uploads")
 @app.post("/upload")
 def upload_file(file: UploadFile = File(...)):
     filename = file.filename
-    file_location = os.path.join(UPLOAD_DIRECTORY, filename)
+    file_path = os.path.join(UPLOAD_DIRECTORY, filename)
 
-    with open(file_location, "wb") as buffer:
+    with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     return {
         "message": "File uploaded successfully",
