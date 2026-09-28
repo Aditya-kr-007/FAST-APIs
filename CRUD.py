@@ -5,14 +5,14 @@ app = FastAPI()
 
 todos=[]
 
-class Todo(BaseModel):
+class Todo(BaseModel):   #table structure for todo
     id: int
     task: str
     completed: bool
 
-@app.post("/TODO")   #using post method to create a todo
-def create_todo(todo: Todo):
-    todos.append(todo)
+@app.post("/TODO")            #using post method to create a todo
+def create_todo(todo: Todo):  #getting todo from request body
+    todos.append(todo)        #appending the todo to the list
     return {
         "message": "todo added",
         "data": todo
@@ -24,8 +24,8 @@ def get_todo():
 
 @app.get("/TODO/{todo_id}") #getting todo by id
 def get_todos(todo_id:int):
-    for todo in todos:
-        if todo.id==todo_id:
+    for todo in todos:        #iterating through the list of todos
+        if todo.id==todo_id:  #if todo id matches the requested id, return the todo
             return todo
     return {"ERROR":"Todo not found"}
 
@@ -49,4 +49,4 @@ def delete_todo(todo_id:int):
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("CRUD:app", host="127.0.0.1", port=8000, reload=True)
