@@ -10,7 +10,7 @@ class Todo(BaseModel):
     task: str
     completed: bool
 
-@app.post("/TODO")
+@app.post("/TODO")   #using post method to create a todo
 def create_todo(todo: Todo):
     todos.append(todo)
     return {
@@ -18,11 +18,11 @@ def create_todo(todo: Todo):
         "data": todo
     }
 
-@app.get("/TODO")
+@app.get("/TODO") #getting all todos
 def get_todo():
     return todos
 
-@app.get("/TODO/{todo_id}")
+@app.get("/TODO/{todo_id}") #getting todo by id
 def get_todos(todo_id:int):
     for todo in todos:
         if todo.id==todo_id:
